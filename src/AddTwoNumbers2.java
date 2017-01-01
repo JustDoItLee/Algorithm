@@ -15,24 +15,21 @@ public class AddTwoNumbers2 {
         ListNode p2 = l2;
         ListNode newHead = new ListNode(0);
         ListNode p3 = newHead;
-        int val;// store sum
+        int val;
         int carry = 0;
 
         while (p1 != null || p2 != null) {
-            // both p1 and p2 have value
             if (p1 != null && p2 != null) {
                 val = p1.val + p2.val + carry;
                 carry = val / 10;
                 p3.next = new ListNode(val % 10);
                 p1 = p1.next;
                 p2 = p2.next;
-                // p1 is null, because p2 is longer
             } else if (p2 != null) {
                 val = p2.val + carry;
                 carry = val / 10;
                 p3.next = new ListNode(val % 10);
                 p2 = p2.next;
-                // p2 is null, because p1 is longer
             } else if (p1 != null) {
                 val = p1.val + carry;
                 carry = val / 10;
@@ -42,7 +39,6 @@ public class AddTwoNumbers2 {
             p3 = p3.next;
         }
 
-        // handle situation that same length final sum >=10
         if (p1 == null && p2 == null && carry == 1)
             p3.next = new ListNode(1);
         return newHead.next;
