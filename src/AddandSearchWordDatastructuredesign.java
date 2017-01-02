@@ -4,7 +4,7 @@ import java.util.Queue;
 /**
  * @author 李智
  * @date 2017/1/2
- *
+ * <p>
  * Design a data structure that supports the following two operations:
  * void addWord(word)
  * bool search(word)
@@ -20,6 +20,11 @@ import java.util.Queue;
  * Note:
  * You may assume that all words are consist of lowercase letters a-z.
  * You should be familiar with how a Trie works. If not, please work on this problem: Implement Trie (Prefix Tree) first.
+ * <p>
+ * Your WordDictionary object will be instantiated and called as such:
+ * WordDictionary wordDictionary = new WordDictionary();
+ * wordDictionary.addWord("word");
+ * wordDictionary.search("pattern");
  */
 
 //Array实现
