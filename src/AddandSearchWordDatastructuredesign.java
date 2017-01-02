@@ -21,6 +21,8 @@ import java.util.Queue;
  * You may assume that all words are consist of lowercase letters a-z.
  * You should be familiar with how a Trie works. If not, please work on this problem: Implement Trie (Prefix Tree) first.
  */
+
+//Array实现
 public class AddandSearchWordDatastructuredesign {
     class TrieNode {
         TrieNode[] children;
