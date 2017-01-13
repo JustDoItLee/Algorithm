@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Stack;
+
 /**
  * @author 李智
  * @date 2017/1/13
@@ -34,5 +37,21 @@
  * 跟前序遍历的非递归实现方法二很类似。唯一的不同是访问当前节点的时机：前序遍历在入栈前访问，而中序遍历在出栈后访问。
  */
 public class BinaryTreeInorderTraversal2 {
-
+    public ArrayList<Integer> inorderTraversal(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        if (root == null)
+            return list;
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode node = root;
+        while (!stack.isEmpty() || node != null) {
+            while (node != null) {
+                stack.push(node);
+                node = node.left;
+            }
+            node = stack.pop();
+            list.add(node.val);
+            node = node.right;
+        }
+        return list;
+    }
 }
