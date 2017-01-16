@@ -26,5 +26,21 @@
  * 返回以Node的终点的路径的和，但最大值可能是穿过Node的和
  */
 public class BinaryTreeMaximumPathSum {
+    public int maxPathSum(TreeNode root) {
+        int[] res = new int[1];
+        res[0] = Integer.MIN_VALUE;
+        maxPath(root, res);
+        return res[0];
+    }
 
+    private int maxPath(TreeNode root, int[] res) {
+        if (root == null)
+            return 0;
+        int left = maxPath(root.left, res);//左边一支（不算自己）
+        int right = maxPath(root.right, res);//右边一支（不算自己）
+        int arch = left + right + root.val; //穿过自己
+        int single = Math.max(root.val, Math.max(left, right) + root.val);//（算上自己）
+        res[0] = Math.max(res[0], Math.max(arch, single));//update结果
+        return single;
+    }
 }
