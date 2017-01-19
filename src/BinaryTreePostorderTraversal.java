@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 /**
  * @author 李智
  * @date 2017/1/19
@@ -22,5 +26,32 @@
  *（通过先压入左边儿子链为主线，处理栈中的每个节点时，再压入右边儿子来实现）。
  */
 public class BinaryTreePostorderTraversal {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode node = root;
+        int[] flag = new int[Integer.MAX_VALUE];
 
+        while (node != null) {
+            stack.push(node);
+            flag[stack.size()] = 0;
+            node = node.left;
+        }
+        while (!stack.isEmpty()) {
+            node = stack.peek();
+            while (flag[stack.size()] == 0 && node.right != null) {
+                node = node.right;
+                flag[stack.size()] = 1;
+                while (node != null) {
+                    stack.push(node);
+                    flag[stack.size()] = 0;
+                    node = node.left;
+                }
+                node = stack.peek();
+            }
+            node = stack.pop();
+            list.add(node.val);
+        }
+        return list;
+    }
 }
