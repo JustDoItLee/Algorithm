@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 /**
  * @author 李智
  * @date 2017/1/20
@@ -18,4 +22,23 @@
  * 于是模拟的递归中也不需要存储之前的调用栈信息，只需要类似的生成一个未来的儿子节点的访问计划即可。
  */
 public class BinaryTreePreorderTraversal {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        if (root == null)
+            return null;
+
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        stack.add(root);
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            list.add(node.val);
+            // right node add in stack first
+            if (node.right != null)
+                stack.add(node.right);
+            if (node.left != null) {
+                stack.add(node.left);
+            }
+        }
+        return list;
+    }
 }
