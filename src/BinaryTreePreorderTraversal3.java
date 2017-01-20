@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 /**
  * @author 李智
  * @date 2017/1/20
@@ -11,4 +15,19 @@
  * 与递归方法的调用栈的不同之处在于，内层 while 循环将递归方法中针对左儿子链上所有节点的递归过程集中到了一起。
  */
 public class BinaryTreePreorderTraversal3 {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode node = root;
+        while (!stack.isEmpty() || node != null) {
+            while (node != null) {
+                list.add(node.val);
+                stack.push(node);
+                node = node.left;
+            }
+            node = stack.pop();
+            node = node.right;
+        }
+        return list;
+    }
 }
