@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 /**
  * @author 李智
  * @date 2017/1/21
@@ -13,5 +18,29 @@
  * You should return [1, 3, 4].
  */
 public class BinaryTreeRightSideView {
-
+    public List<Integer> rightSideView(TreeNode root) {
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        if (root == null)
+            return res;
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        queue.add(null);
+        int cur = 0;
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if (node != null) {
+                cur = node.val;
+                if (node.left != null)
+                    queue.add(node.left);
+                if (node.right != null)
+                    queue.add(node.right);
+            } else {
+                res.add(cur);
+                if (queue.isEmpty())
+                    break;
+                queue.add(null);
+            }
+        }
+        return res;
+    }
 }
