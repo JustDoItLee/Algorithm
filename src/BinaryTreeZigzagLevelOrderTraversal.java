@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * @author 李智
  * @date 2017/1/23
@@ -18,5 +21,32 @@
  * ]
  */
 public class BinaryTreeZigzagLevelOrderTraversal {
+    public ArrayList<ArrayList<Integer>> zigzagLevelOrder(TreeNode root) {
 
+        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+        if (root == null)
+            return res;
+        ArrayList<TreeNode> layer = new ArrayList<TreeNode>();
+        layer.add(root);
+        boolean flag = false;
+        while (true) {
+            if (layer.isEmpty())
+                break;
+            ArrayList<TreeNode> nextlayer = new ArrayList<TreeNode>();
+            ArrayList<Integer> currlayer = new ArrayList<Integer>();
+            for (TreeNode node : layer) {
+                currlayer.add(node.val);
+                if (node.left != null)
+                    nextlayer.add(node.left);
+                if (node.right != null)
+                    nextlayer.add(node.right);
+            }
+            if (flag)
+                Collections.reverse(currlayer);
+            res.add(currlayer);
+            flag = !flag;
+            layer = nextlayer;
+        }
+        return res;
+    }
 }
