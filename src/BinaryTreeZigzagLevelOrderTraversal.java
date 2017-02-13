@@ -22,7 +22,6 @@ import java.util.Collections;
  */
 public class BinaryTreeZigzagLevelOrderTraversal {
     public ArrayList<ArrayList<Integer>> zigzagLevelOrder(TreeNode root) {
-
         ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
         if (root == null)
             return res;
