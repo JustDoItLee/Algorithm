@@ -1,6 +1,8 @@
 /**
  * @author 李智
  * @date 2017/2/20
+ * <p>
+ * 希尔排序
  */
 public class Shell {
     public static void sort(Comparable[] a) {
