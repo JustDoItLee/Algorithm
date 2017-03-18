@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /**
  * @author 李智
  * @date 2017/3/18
@@ -17,4 +19,43 @@
  * You may assume that the secret number and your friend's guess only contain digits, and their lengths are always equal.
  */
 public class BullsandCows {
+    public String getHint(String secret, String guess) {
+        String res = "";
+        HashMap<Character, Integer> set = new HashMap<>();
+        int bull = 0;
+        int cow = 0;
+        int length = Math.min(secret.length(), guess.length());
+        for (int i = 0; i < length; i++) {
+            char s = secret.charAt(i);
+            char g = guess.charAt(i);
+            if (s != g) {
+                if (!set.containsKey(s))
+                    set.put(s, 1);
+                else
+                    set.replace(s, set.get(s) + 1);
+            } else {
+                bull++;
+            }
+        }
+	/*	for (int i = length; i < secret.length(); i++) {
+			char s = secret.charAt(i);
+			if (!set.containsKey(s))
+				set.put(s, 1);
+			else
+				set.replace(s, set.get(s) + 1);
+		}
+	*/
+        for (int i = 0; i < length; i++) {
+            char s = secret.charAt(i);
+            char g = guess.charAt(i);
+            if (s != g) {
+                if (set.containsKey(g) && set.get(g) > 0) {
+                    set.put(g, set.get(g) - 1);
+                    cow++;
+                }
+            }
+        }
+        res = bull + "A" + cow + "B";
+        return res;
+    }
 }
