@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * @author 李智
  * @date 2017/5/8
@@ -15,5 +17,22 @@
  * ]
  */
 public class Combinations {
+    public ArrayList<ArrayList<Integer>> combine(int n, int k) {
+        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        combinehelper(n, 1, k, list, res);
+        return res;
+    }
 
+    public void combinehelper(int n, int start, int k, ArrayList<Integer> list, ArrayList<ArrayList<Integer>> res) {
+        if (list.size() == k) {
+            res.add(new ArrayList<Integer>(list));
+            return;
+        }
+        for (int i = start; i <= n; i++) {
+            list.add(i);
+            combinehelper(n, i + 1, k, list, res);
+            list.remove(list.size() - 1);
+        }
+    }
 }
